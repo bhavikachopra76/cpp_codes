@@ -1,0 +1,35 @@
+Preprocessor : It is a tool that runs immediately before the compiler. It goes through the source code to find the
+preprocessor directives -> Every line starting with a '#' is a preprocessor directive.
+It gives command to the preprocessor.
+#include <iostream>
+Preprocessor copies and pastes the code in the Library and send the extended file (translation unit) to the Compiler.
+The compiler never knows that our code ever included #include <iostream>
+
+Namespace : It is the way of grouping the code together and avoiding name collisions.
+We use a prefix to define a namespace. e.g. std namespace -> std :: cout
+:: is called the scope resolution operator. Using this everytime is a tedious task
+So, we do something like -> using namespace std
+It tells the compiler to check the std family if it does not know the meaning of "cout" , "cin" etc.
+
+int main(){
+return 0;
+}
+
+'main' is the function where the computer starts to read and execute the program. No other function can be named 'main'
+it return an integer type -> traditionally it is '0'. Indicating that the code works fine. And if it returns something
+else, that means the code crashed and there is some error.
+
+variables are named boxes stored in the memory to store data.
+Data types in c++ :
+int (Integer) -> Whole numbers (Positive or Negative)
+double (Decimal Numbers)
+char (Character) -> 'a' use single quotes, stores only a single character
+bool (Boolean) -> true (1), false (0)
+string (Text) -> "bhavika" use doubles quotes
+
+Type Conversion : Implicit Conversion -> Done by the computer automatically
+Explicit Conversion -> Done by the programmer manually
+Types of Explicit Conversion :
+c style cast -> (int)a
+functional style cast -> int(a)
+static cast -> static_cast<int>
