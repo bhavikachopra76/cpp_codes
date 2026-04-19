@@ -1,35 +1,106 @@
-Preprocessor : It is a tool that runs immediately before the compiler. It goes through the source code to find the
-preprocessor directives -> Every line starting with a '#' is a preprocessor directive.
-It gives command to the preprocessor.
-#include <iostream>
-Preprocessor copies and pastes the code in the Library and send the extended file (translation unit) to the Compiler.
-The compiler never knows that our code ever included #include <iostream>
+Compile time : It is when the compiler translates the source code into machine code and generates an executable file.
+It finds syntax errors, type errors, and it also knows at this time how much memory to allocate for a variable.
 
-Namespace : It is the way of grouping the code together and avoiding name collisions.
-We use a prefix to define a namespace. e.g. std namespace -> std :: cout
-:: is called the scope resolution operator. Using this everytime is a tedious task
-So, we do something like -> using namespace std
-It tells the compiler to check the std family if it does not know the meaning of "cout" , "cin" etc.
+Runtime : It is when the executable file is executed. It finds errors that the compiler could not find by just looking
+at the source code. e.g. Dividing by 0, segmentation fault, etc.
 
-int main(){
+Compiler : It read the whole source code first and builds a machine code and then executes it
+Interpreter : It read and executes code line by line
+
+Preprocessor : It is a tool that runs immediately before the compiler runs. It scans the source code for preprocessor
+directive (every line starting with a '#'). These preprocessor directives gives commands to the preprocessor
+e.g. #include <iostream>, tells the preprocessor to include the iostream library. So, the preprocessor copies and pastes
+the code from the library with our code and sends the extended file(translational unit) to the compiler.
+The compiler never knows that the code ever had #include <iostream> in it.
+
+Namespace : It is the way to group the code together and avoid name collisions.
+e.g. the 'std' namespace has all the code for us to use things like cout, cin, vector etc. We use the namespace by using
+the prefix :: which is called the scope resolution operator. Writing std::cout, std::cin everytime is a tedious task
+so we use 'using namespace std' which tells the compiler that if it sees something like cout and does not know what it
+is it needs to check the std family
+
+We can make our own namespaces
+namespace GamePhysics{
+int gravity = 0.9
+}
+
+namespace User{
+int gravity = 0.2
+}
+
+we have same variable names but different meaning of usage.
+
+cout << User::gravity << endl;
+cout << GamePhysics::gravity << endl;
+
+int main(){}
 return 0;
 }
 
-'main' is the function where the computer starts to read and execute the program. No other function can be named 'main'
-it return an integer type -> traditionally it is '0'. Indicating that the code works fine. And if it returns something
-else, that means the code crashed and there is some error.
+this is the main function, which tells the os where to start executing from. Return 0, tell the os that everything
+executes successfully, but if main function return some other integer value it tells the os the code did not execute
+well.
 
-variables are named boxes stored in the memory to store data.
-Data types in c++ :
-int (Integer) -> Whole numbers (Positive or Negative)
-double (Decimal Numbers)
-char (Character) -> 'a' use single quotes, stores only a single character
-bool (Boolean) -> true (1), false (0)
-string (Text) -> "bhavika" use doubles quotes
+Variables : They are named boxes in the memory to store data.
+Data Types : C++ is statically typed, usage of data types helps the compiler to know how much memory to allocate in the
+memory before execution.
 
-Type Conversion : Implicit Conversion -> Done by the computer automatically
-Explicit Conversion -> Done by the programmer manually
-Types of Explicit Conversion :
+data types are :int (Integer) -> Whole numbers (Positive or Negative)
+                double (Decimal Numbers)
+                char (Character) -> 'a' use single quotes, stores only a single character
+                bool (Boolean) -> true (1), false (0)
+                string (Text) -> "bhavika" use doubles quotes
+
+How are data types stored in memory
+e.g. int -> it is of 4 bytes -> 32 bits
+our RAM has group of 8 switches (8 Bits)
+so, int allocates 4 bytes of space in the memory
+our machine can't understand the integer value so it converts it to binary code, that the computer can understand.
+e.g. 5 is converted to 101
+as the compiler can't shrink the memory allocated, it puts the binary values towards the end of the 32 bits.
+and the leftover bits are filled with zeroes.
+
+Negative numbers are stored in memory by using 2's complement
+it takes the negative number, converts it to binary by ignoring the sign
+then we take the 1's complement of the binary code (flip the bits)
+and then we add 1 that is the 2's complement.
+e.g. -5 -> 5 -> 101
+00000000 00000000 00000000 00000101
+11111111 11111111 11111111 11111010
+11111111 11111111 11111111 11111011 -> this is how -5 is stored in memory
+the most significant bit tells if the number is positive or negative
+1 -> negative
+0 -> positive
+
+How are these negative numbers printed if they are stored as '11111111 11111111 11111111 11111011' in the memory?
+it checks the msb, and it knows that it is a negative number
+after that it does the reverse 2's complement
+11111111 11111111 11111111 11111011
+11111111 11111111 11111111 11111010 subtract -1
+00000000 00000000 00000000 00000101 flip the bits
+converts it into base 10 -> 5 and adds the minus sign and returns -5
+
+Type conversion:
+Implicit conversion -> Done by the computer automatically
+Explicit conversion -> Done manually by us
+
+Types:
 c style cast -> (int)a
 functional style cast -> int(a)
-static cast -> static_cast<int>
+static cast -> static_cast<int>(a)
+
+Types of Operators:
+Arithmetic operator -> + , - , * , % , /
+the '/' division operator if it is int/int returns an int values
+float/int returns a float value
+double/int returns a double value
+
+Relational Operators -> ==, >, <, <=, >=, !=
+Logical Operators -> &&, ||, !
+Assignment operator -> =
+
+Control flow:
+Conditionals:
+if{}else if{}else{}
+Loops:
+while loop
